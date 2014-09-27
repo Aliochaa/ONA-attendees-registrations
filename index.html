@@ -206,7 +206,7 @@
     $(function() {
         $('#chart1').highcharts({
             chart: {
-                type: 'column'
+                //type: 'column'
             },
             title: {
                 text: 'Registration per day'
@@ -305,12 +305,26 @@
                 zIndex: 4
             }]
             },
-            yAxis: {
+            yAxis: [{
                 min: 0,
                 title: {
                     text: ''
                 }
+            }, { // Secondary yAxis
+            title: {
+                text: 'Total registrations',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
             },
+            labels: {
+                format: '{value}',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -336,6 +350,8 @@
             },
             series: [{
                     name: 'Registrations',
+                    yAxis: 0,
+                    type: "column",
                     data: [{"x":Date.UTC(2014,4,14),"y":39},
 {"x":Date.UTC(2014,4,15),"y":8},
 {"x":Date.UTC(2014,4,16),"y":10},
@@ -472,12 +488,152 @@
 {"x":Date.UTC(2014,9,9),"y":56},
 {"x":Date.UTC(2014,9,10),"y":64}],
                     color: "#1c9099"
+                },
+                {
+                    name: "Total registers",
+                    type: 'spline',
+                    yAxis: 1,
+                    marker: {
+                        enabled: false
+                    },
+                    width: 5,
+                    zIndex: -1,
+                    data: [{"x":Date.UTC(2014,4,14),"y":39},
+{"x":Date.UTC(2014,4,15),"y":47},
+{"x":Date.UTC(2014,4,16),"y":57},
+{"x":Date.UTC(2014,4,17),"y":62},
+{"x":Date.UTC(2014,4,18),"y":70},
+{"x":Date.UTC(2014,4,19),"y":71},
+{"x":Date.UTC(2014,4,21),"y":73},
+{"x":Date.UTC(2014,4,22),"y":78},
+{"x":Date.UTC(2014,4,23),"y":86},
+{"x":Date.UTC(2014,4,24),"y":92},
+{"x":Date.UTC(2014,4,25),"y":98},
+{"x":Date.UTC(2014,4,26),"y":100},
+{"x":Date.UTC(2014,4,28),"y":108},
+{"x":Date.UTC(2014,4,29),"y":109},
+{"x":Date.UTC(2014,4,30),"y":113},
+{"x":Date.UTC(2014,5,1),"y":115},
+{"x":Date.UTC(2014,5,2),"y":117},
+{"x":Date.UTC(2014,5,5),"y":120},
+{"x":Date.UTC(2014,5,6),"y":123},
+{"x":Date.UTC(2014,5,7),"y":126},
+{"x":Date.UTC(2014,5,8),"y":128},
+{"x":Date.UTC(2014,5,9),"y":130},
+{"x":Date.UTC(2014,5,10),"y":131},
+{"x":Date.UTC(2014,5,12),"y":132},
+{"x":Date.UTC(2014,5,13),"y":137},
+{"x":Date.UTC(2014,5,14),"y":140},
+{"x":Date.UTC(2014,5,15),"y":141},
+{"x":Date.UTC(2014,5,16),"y":143},
+{"x":Date.UTC(2014,5,17),"y":144},
+{"x":Date.UTC(2014,5,19),"y":145},
+{"x":Date.UTC(2014,5,21),"y":149},
+{"x":Date.UTC(2014,5,22),"y":152},
+{"x":Date.UTC(2014,5,23),"y":157},
+{"x":Date.UTC(2014,5,24),"y":158},
+{"x":Date.UTC(2014,5,25),"y":160},
+{"x":Date.UTC(2014,5,26),"y":163},
+{"x":Date.UTC(2014,5,27),"y":174},
+{"x":Date.UTC(2014,5,28),"y":180},
+{"x":Date.UTC(2014,5,29),"y":194},
+{"x":Date.UTC(2014,5,30),"y":197},
+{"x":Date.UTC(2014,5,31),"y":200},
+{"x":Date.UTC(2014,6,2),"y":203},
+{"x":Date.UTC(2014,6,3),"y":207},
+{"x":Date.UTC(2014,6,4),"y":220},
+{"x":Date.UTC(2014,6,5),"y":231},
+{"x":Date.UTC(2014,6,6),"y":236},
+{"x":Date.UTC(2014,6,8),"y":238},
+{"x":Date.UTC(2014,6,9),"y":246},
+{"x":Date.UTC(2014,6,10),"y":260},
+{"x":Date.UTC(2014,6,11),"y":269},
+{"x":Date.UTC(2014,6,12),"y":282},
+{"x":Date.UTC(2014,6,13),"y":300},
+{"x":Date.UTC(2014,6,14),"y":301},
+{"x":Date.UTC(2014,6,15),"y":304},
+{"x":Date.UTC(2014,6,16),"y":343},
+{"x":Date.UTC(2014,6,17),"y":367},
+{"x":Date.UTC(2014,6,18),"y":410},
+{"x":Date.UTC(2014,6,19),"y":485},
+{"x":Date.UTC(2014,6,20),"y":498},
+{"x":Date.UTC(2014,6,21),"y":500},
+{"x":Date.UTC(2014,6,22),"y":501},
+{"x":Date.UTC(2014,6,23),"y":514},
+{"x":Date.UTC(2014,6,24),"y":521},
+{"x":Date.UTC(2014,6,25),"y":529},
+{"x":Date.UTC(2014,6,26),"y":534},
+{"x":Date.UTC(2014,6,27),"y":544},
+{"x":Date.UTC(2014,6,28),"y":546},
+{"x":Date.UTC(2014,6,30),"y":553},
+{"x":Date.UTC(2014,7,1),"y":564},
+{"x":Date.UTC(2014,7,2),"y":579},
+{"x":Date.UTC(2014,7,3),"y":588},
+{"x":Date.UTC(2014,7,4),"y":589},
+{"x":Date.UTC(2014,7,5),"y":590},
+{"x":Date.UTC(2014,7,7),"y":597},
+{"x":Date.UTC(2014,7,8),"y":614},
+{"x":Date.UTC(2014,7,9),"y":626},
+{"x":Date.UTC(2014,7,10),"y":642},
+{"x":Date.UTC(2014,7,11),"y":648},
+{"x":Date.UTC(2014,7,12),"y":651},
+{"x":Date.UTC(2014,7,13),"y":653},
+{"x":Date.UTC(2014,7,14),"y":672},
+{"x":Date.UTC(2014,7,15),"y":679},
+{"x":Date.UTC(2014,7,16),"y":707},
+{"x":Date.UTC(2014,7,17),"y":732},
+{"x":Date.UTC(2014,7,18),"y":744},
+{"x":Date.UTC(2014,7,19),"y":745},
+{"x":Date.UTC(2014,7,20),"y":754},
+{"x":Date.UTC(2014,7,21),"y":766},
+{"x":Date.UTC(2014,7,22),"y":781},
+{"x":Date.UTC(2014,7,23),"y":832},
+{"x":Date.UTC(2014,7,24),"y":870},
+{"x":Date.UTC(2014,7,25),"y":885},
+{"x":Date.UTC(2014,7,27),"y":887},
+{"x":Date.UTC(2014,7,28),"y":906},
+{"x":Date.UTC(2014,7,29),"y":923},
+{"x":Date.UTC(2014,7,30),"y":949},
+{"x":Date.UTC(2014,7,31),"y":997},
+{"x":Date.UTC(2014,8,1),"y":1009},
+{"x":Date.UTC(2014,8,2),"y":1010},
+{"x":Date.UTC(2014,8,4),"y":1024},
+{"x":Date.UTC(2014,8,5),"y":1033},
+{"x":Date.UTC(2014,8,6),"y":1039},
+{"x":Date.UTC(2014,8,7),"y":1053},
+{"x":Date.UTC(2014,8,8),"y":1063},
+{"x":Date.UTC(2014,8,10),"y":1065},
+{"x":Date.UTC(2014,8,11),"y":1079},
+{"x":Date.UTC(2014,8,12),"y":1099},
+{"x":Date.UTC(2014,8,13),"y":1126},
+{"x":Date.UTC(2014,8,14),"y":1143},
+{"x":Date.UTC(2014,8,15),"y":1154},
+{"x":Date.UTC(2014,8,16),"y":1156},
+{"x":Date.UTC(2014,8,17),"y":1158},
+{"x":Date.UTC(2014,8,18),"y":1168},
+{"x":Date.UTC(2014,8,19),"y":1181},
+{"x":Date.UTC(2014,8,20),"y":1195},
+{"x":Date.UTC(2014,8,21),"y":1210},
+{"x":Date.UTC(2014,8,22),"y":1227},
+{"x":Date.UTC(2014,8,23),"y":1229},
+{"x":Date.UTC(2014,8,24),"y":1231},
+{"x":Date.UTC(2014,8,25),"y":1244},
+{"x":Date.UTC(2014,8,26),"y":1260},
+{"x":Date.UTC(2014,8,27),"y":1291},
+{"x":Date.UTC(2014,8,28),"y":1320},
+{"x":Date.UTC(2014,8,29),"y":1335},
+{"x":Date.UTC(2014,8,30),"y":1337},
+{"x":Date.UTC(2014,8,31),"y":1340},
+{"x":Date.UTC(2014,9,2),"y":1379},
+{"x":Date.UTC(2014,9,3),"y":1412},
+{"x":Date.UTC(2014,9,4),"y":1428},
+{"x":Date.UTC(2014,9,5),"y":1448},
+{"x":Date.UTC(2014,9,6),"y":1452},
+{"x":Date.UTC(2014,9,7),"y":1454},
+{"x":Date.UTC(2014,9,8),"y":1477},
+{"x":Date.UTC(2014,9,9),"y":1533},
+{"x":Date.UTC(2014,9,10),"y":1597}]
                 }
-                // ,
-                // {
-                //  name: 'Finalists and winners',
-                //  data: [44,66,66,55,63,71,74,88,86,98,105,105,101,99,109]
-                // }
             ],
             legend: {
                 enabled: false
@@ -490,7 +646,7 @@
     </script>
     <script type="text/javascript" src="http://newsroom14.journalists.org/pym.js"></script>
     <script type="text/javascript">
-        var pymChild = new pym.Child({ polling: 500 });
+       // var pymChild = new pym.Child({ polling: 500 });
     </script>
 </body>
 
