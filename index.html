@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ONA - Best time to register</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+    <style>
+    /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+    html,
+    button,
+    input,
+    select,
+    textarea {
+        color: #222;
+    }
+    html {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+    ::-moz-selection {
+        background: #b3d4fc;
+        text-shadow: none;
+    }
+    ::selection {
+        background: #b3d4fc;
+        text-shadow: none;
+    }
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+    audio,
+    canvas,
+    img,
+    video {
+        vertical-align: middle;
+    }
+    fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+    textarea {
+        resize: vertical;
+    }
+    .browsehappy {
+        margin: 0.2em 0;
+        background: #ccc;
+        color: #000;
+        padding: 0.2em 0;
+    }
+    /* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+    #main {
+        width: 100%;
+        margin: auto;
+    }
+    #graph1 {
+        width: 100%;
+        height: 400px;
+    }
+    /* ==========================================================================
+   Media Queries
+   ========================================================================== */
+    @media only screen and (min-width: 35em) {}@media print,
+    (-o-min-device-pixel-ratio: 5/4),
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-resolution: 120dpi) {}
+    /* ==========================================================================
+   Helper classes
+   ========================================================================== */
+    .ir {
+        background-color:transparent;
+        border:0;
+        overflow:hidden;
+        *text-indent:-9999px;
+    }
+    .ir:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 150%;
+    }
+    .hidden {
+        display: none !important;
+        visibility: hidden;
+    }
+    .visuallyhidden {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    .visuallyhidden.focusable:active,
+    .visuallyhidden.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+    .invisible {
+        visibility: hidden;
+    }
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+    /* ==========================================================================
+   Print styles
+   ========================================================================== */
+    @media print {
+        * {
+            background: transparent !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+        a,
+        a:visited {
+            text-decoration: underline;
+        }
+        a[href]:after {
+            content: " (" attr(href)")";
+        }
+        abbr[title]:after {
+            content: " (" attr(title)")";
+        }
+        .ir a:after,
+        a[href^="javascript:"]:after,
+        a[href^="#"]:after {
+            content: "";
+        }
+        pre,
+        blockquote {
+            border: 1px solid #999;
+            page-break-inside: avoid;
+        }
+        thead {
+            display: table-header-group;
+        }
+        tr,
+        img {
+            page-break-inside: avoid;
+        }
+        img {
+            max-width: 100% !important;
+        }
+        @page {
+            margin: 0.5cm;
+        }
+        p,
+        h2,
+        h3 {
+            orphans: 3;
+            widows: 3;
+        }
+        h2,
+        h3 {
+            page-break-after: avoid;
+        }
+    }
+    </style>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- <h1>How news organisations have performed at the ONA Awards</h1> -->
+        <div id="chart1"></div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script>
+    $(function() {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registration per day'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime', //Axe chronologique
+            dateTimeLabelFormats: { //Affichage des mois et des années
+                month: '%b %y',
+                year: '%b'
+            },
+            plotBands : [{
+                    from : Date.UTC(2014,4,14),
+                    to : Date.UTC(2014,6,19),
+                    color : '#fee8c8',
+                    label : {
+                        text : 'Early-bird : $769',
+                        verticalAlign: 'middle',
+                        style: {
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                {
+                    from : Date.UTC(2014,6,19),
+                    to : Date.UTC(2014,7,31),
+                    color : '#fdd49e',
+                    label : {
+                        text : 'Getting Closer : $879',
+                        verticalAlign: 'middle',
+                        style: {
+                            fontWeight: 'bold'
+                        }
+                    }
+                },{
+                    from : Date.UTC(2014,7,31),
+                    to : Date.UTC(2014,9,10),
+                    color : '#fdbb84',
+                    label : {
+                        text : 'Almost There : $989',
+                        verticalAlign: 'middle',
+                        style: {
+                            fontWeight: 'bold'
+                        }
+                    }
+                }],
+                plotLines: [{ //Initialisation des barres verticales
+                color: 'black',
+                dashStyle: 'Dot', //Pointillés
+                width: 2,
+                value: Date.UTC(2014,4,14), // Position sur l'axe chronologique (Attention : les mois en javascript démarrent à zéro, donc mars = 2)
+                label: {
+                    rotation: 0,
+                    text: 'Registrations open', //Nom affiché sur la barre verticale
+                    textAlign: 'left',
+                    align: 'left'
+                },
+                zIndex: 4
+            }, {
+                color: 'black',
+                dashStyle: 'Dot',
+                width: 2,
+                value: Date.UTC(2014,6,04),
+                label: {
+                    rotation: 0,
+                    text: 'First version of the schedule',
+                    textAlign: 'left',
+                    align: 'left'
+                },
+                zIndex: 4
+            }, {
+                color: 'black',
+                dashStyle: 'Dot', 
+                width: 2,
+                value: Date.UTC(2014,7,10),
+                label: {
+                    rotation: 0,
+                    text: 'Interactive version of the schedule',
+                    textAlign: 'left',
+                    align: 'left'
+                },
+                zIndex: 4
+            },{
+                color: 'black',
+                dashStyle: 'Dot', 
+                width: 2,
+                value: Date.UTC(2014,8,26),
+                label: {
+                    rotation: 0,
+                    text: 'OJA Finalists',
+                    textAlign: 'right',
+                    verticalAlign: 'top'
+                },
+                zIndex: 4
+            }]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true,
+                enabled: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0,
+                    borderWidth: 0,
+                    groupPadding: 0
+                },
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: false,
+                        format: '{point.y}'
+                    }
+                }
+            },
+            series: [{
+                    name: 'Registrations',
+                    data: [{"x":Date.UTC(2014,4,14),"y":39},
+{"x":Date.UTC(2014,4,15),"y":8},
+{"x":Date.UTC(2014,4,16),"y":10},
+{"x":Date.UTC(2014,4,17),"y":5},
+{"x":Date.UTC(2014,4,18),"y":8},
+{"x":Date.UTC(2014,4,19),"y":1},
+{"x":Date.UTC(2014,4,21),"y":2},
+{"x":Date.UTC(2014,4,22),"y":5},
+{"x":Date.UTC(2014,4,23),"y":8},
+{"x":Date.UTC(2014,4,24),"y":6},
+{"x":Date.UTC(2014,4,25),"y":6},
+{"x":Date.UTC(2014,4,26),"y":2},
+{"x":Date.UTC(2014,4,28),"y":8},
+{"x":Date.UTC(2014,4,29),"y":1},
+{"x":Date.UTC(2014,4,30),"y":4},
+{"x":Date.UTC(2014,5,1),"y":2},
+{"x":Date.UTC(2014,5,2),"y":2},
+{"x":Date.UTC(2014,5,5),"y":3},
+{"x":Date.UTC(2014,5,6),"y":3},
+{"x":Date.UTC(2014,5,7),"y":3},
+{"x":Date.UTC(2014,5,8),"y":2},
+{"x":Date.UTC(2014,5,9),"y":2},
+{"x":Date.UTC(2014,5,10),"y":1},
+{"x":Date.UTC(2014,5,12),"y":1},
+{"x":Date.UTC(2014,5,13),"y":5},
+{"x":Date.UTC(2014,5,14),"y":3},
+{"x":Date.UTC(2014,5,15),"y":1},
+{"x":Date.UTC(2014,5,16),"y":2},
+{"x":Date.UTC(2014,5,17),"y":1},
+{"x":Date.UTC(2014,5,19),"y":1},
+{"x":Date.UTC(2014,5,21),"y":4},
+{"x":Date.UTC(2014,5,22),"y":3},
+{"x":Date.UTC(2014,5,23),"y":5},
+{"x":Date.UTC(2014,5,24),"y":1},
+{"x":Date.UTC(2014,5,25),"y":2},
+{"x":Date.UTC(2014,5,26),"y":3},
+{"x":Date.UTC(2014,5,27),"y":11},
+{"x":Date.UTC(2014,5,28),"y":6},
+{"x":Date.UTC(2014,5,29),"y":14},
+{"x":Date.UTC(2014,5,30),"y":3},
+{"x":Date.UTC(2014,5,31),"y":3},
+{"x":Date.UTC(2014,6,2),"y":3},
+{"x":Date.UTC(2014,6,3),"y":4},
+{"x":Date.UTC(2014,6,4),"y":13},
+{"x":Date.UTC(2014,6,5),"y":11},
+{"x":Date.UTC(2014,6,6),"y":5},
+{"x":Date.UTC(2014,6,8),"y":2},
+{"x":Date.UTC(2014,6,9),"y":8},
+{"x":Date.UTC(2014,6,10),"y":14},
+{"x":Date.UTC(2014,6,11),"y":9},
+{"x":Date.UTC(2014,6,12),"y":13},
+{"x":Date.UTC(2014,6,13),"y":18},
+{"x":Date.UTC(2014,6,14),"y":1},
+{"x":Date.UTC(2014,6,15),"y":3},
+{"x":Date.UTC(2014,6,16),"y":39},
+{"x":Date.UTC(2014,6,17),"y":24},
+{"x":Date.UTC(2014,6,18),"y":43},
+{"x":Date.UTC(2014,6,19),"y":75},
+{"x":Date.UTC(2014,6,20),"y":13},
+{"x":Date.UTC(2014,6,21),"y":2},
+{"x":Date.UTC(2014,6,22),"y":1},
+{"x":Date.UTC(2014,6,23),"y":13},
+{"x":Date.UTC(2014,6,24),"y":7},
+{"x":Date.UTC(2014,6,25),"y":8},
+{"x":Date.UTC(2014,6,26),"y":5},
+{"x":Date.UTC(2014,6,27),"y":10},
+{"x":Date.UTC(2014,6,28),"y":2},
+{"x":Date.UTC(2014,6,30),"y":7},
+{"x":Date.UTC(2014,7,1),"y":11},
+{"x":Date.UTC(2014,7,2),"y":15},
+{"x":Date.UTC(2014,7,3),"y":9},
+{"x":Date.UTC(2014,7,4),"y":1},
+{"x":Date.UTC(2014,7,5),"y":1},
+{"x":Date.UTC(2014,7,7),"y":7},
+{"x":Date.UTC(2014,7,8),"y":17},
+{"x":Date.UTC(2014,7,9),"y":12},
+{"x":Date.UTC(2014,7,10),"y":16},
+{"x":Date.UTC(2014,7,11),"y":6},
+{"x":Date.UTC(2014,7,12),"y":3},
+{"x":Date.UTC(2014,7,13),"y":2},
+{"x":Date.UTC(2014,7,14),"y":19},
+{"x":Date.UTC(2014,7,15),"y":7},
+{"x":Date.UTC(2014,7,16),"y":28},
+{"x":Date.UTC(2014,7,17),"y":25},
+{"x":Date.UTC(2014,7,18),"y":12},
+{"x":Date.UTC(2014,7,19),"y":1},
+{"x":Date.UTC(2014,7,20),"y":9},
+{"x":Date.UTC(2014,7,21),"y":12},
+{"x":Date.UTC(2014,7,22),"y":15},
+{"x":Date.UTC(2014,7,23),"y":51},
+{"x":Date.UTC(2014,7,24),"y":38},
+{"x":Date.UTC(2014,7,25),"y":15},
+{"x":Date.UTC(2014,7,27),"y":2},
+{"x":Date.UTC(2014,7,28),"y":19},
+{"x":Date.UTC(2014,7,29),"y":17},
+{"x":Date.UTC(2014,7,30),"y":26},
+{"x":Date.UTC(2014,7,31),"y":48},
+{"x":Date.UTC(2014,8,1),"y":12},
+{"x":Date.UTC(2014,8,2),"y":1},
+{"x":Date.UTC(2014,8,4),"y":14},
+{"x":Date.UTC(2014,8,5),"y":9},
+{"x":Date.UTC(2014,8,6),"y":6},
+{"x":Date.UTC(2014,8,7),"y":14},
+{"x":Date.UTC(2014,8,8),"y":10},
+{"x":Date.UTC(2014,8,10),"y":2},
+{"x":Date.UTC(2014,8,11),"y":14},
+{"x":Date.UTC(2014,8,12),"y":20},
+{"x":Date.UTC(2014,8,13),"y":27},
+{"x":Date.UTC(2014,8,14),"y":17},
+{"x":Date.UTC(2014,8,15),"y":11},
+{"x":Date.UTC(2014,8,16),"y":2},
+{"x":Date.UTC(2014,8,17),"y":2},
+{"x":Date.UTC(2014,8,18),"y":10},
+{"x":Date.UTC(2014,8,19),"y":13},
+{"x":Date.UTC(2014,8,20),"y":14},
+{"x":Date.UTC(2014,8,21),"y":15},
+{"x":Date.UTC(2014,8,22),"y":17},
+{"x":Date.UTC(2014,8,23),"y":2},
+{"x":Date.UTC(2014,8,24),"y":2},
+{"x":Date.UTC(2014,8,25),"y":13},
+{"x":Date.UTC(2014,8,26),"y":16},
+{"x":Date.UTC(2014,8,27),"y":31},
+{"x":Date.UTC(2014,8,28),"y":29},
+{"x":Date.UTC(2014,8,29),"y":15},
+{"x":Date.UTC(2014,8,30),"y":2},
+{"x":Date.UTC(2014,8,31),"y":3},
+{"x":Date.UTC(2014,9,2),"y":39},
+{"x":Date.UTC(2014,9,3),"y":33},
+{"x":Date.UTC(2014,9,4),"y":16},
+{"x":Date.UTC(2014,9,5),"y":20},
+{"x":Date.UTC(2014,9,6),"y":4},
+{"x":Date.UTC(2014,9,7),"y":2},
+{"x":Date.UTC(2014,9,8),"y":23},
+{"x":Date.UTC(2014,9,9),"y":56},
+{"x":Date.UTC(2014,9,10),"y":64}],
+                    color: "#1c9099"
+                }
+                // ,
+                // {
+                //  name: 'Finalists and winners',
+                //  data: [44,66,66,55,63,71,74,88,86,98,105,105,101,99,109]
+                // }
+            ],
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
