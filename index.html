@@ -70,10 +70,17 @@
         width: 100%;
         margin: auto;
     }
-    #graph1 {
-        width: 100%;
-        height: 400px;
+    #chart1 {
+        min-width: 370px;
+        max-width: 600px;
+        height: 1000px;
     }
+    .source {
+font-size: 11px;
+color: #888;
+margin-top: 5px;
+margin-bottom: 70px;
+}
     /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -199,6 +206,7 @@
         <![endif]-->
         <!-- <h1>How news organisations have performed at the ONA Awards</h1> -->
         <div id="chart1"></div>
+        <p class="source">A special thank to Jeremiah for the access to the data. The price concerns non ONA members. More information <a href="http://ona14.journalists.org/register/" target="_blank">here</a>.</p>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -225,11 +233,15 @@
                     to : Date.UTC(2014,6,19),
                     color : '#fee8c8',
                     label : {
-                        text : 'Early-bird : $769',
-                        verticalAlign: 'middle',
+                        text : '<br />Early-bird : $769',
+                        verticalAlign: 'top',
+                        textAlign: 'right',
+                        align: 'right',
                         style: {
                             fontWeight: 'bold'
-                        }
+                        },
+                        useHTML: true,
+                        zIndex: 4
                     }
                 },
                 {
@@ -237,22 +249,30 @@
                     to : Date.UTC(2014,7,31),
                     color : '#fdd49e',
                     label : {
-                        text : 'Getting Closer : $879',
-                        verticalAlign: 'middle',
+                        text : '<br />Getting Closer : $879',
+                        verticalAlign: 'top',
+                        textAlign: 'right',
+                        align: 'right',
                         style: {
                             fontWeight: 'bold'
-                        }
+                        },
+                        useHTML: true,
+                        zIndex: 4
                     }
                 },{
                     from : Date.UTC(2014,7,31),
                     to : Date.UTC(2014,9,10),
                     color : '#fdbb84',
                     label : {
-                        text : 'Almost There : $989',
-                        verticalAlign: 'middle',
+                        text : '<br />Almost There : $989',
+                        verticalAlign: 'top',
+                        useHTML: true,
+                        textAlign: 'right',
+                        align: 'right',
                         style: {
                             fontWeight: 'bold'
                         }
+                        ,zIndex: 4
                     }
                 }],
                 plotLines: [{ //Initialisation des barres verticales
@@ -263,8 +283,7 @@
                 label: {
                     rotation: 0,
                     text: 'Registrations open', //Nom affiché sur la barre verticale
-                    textAlign: 'left',
-                    align: 'left'
+                    align: 'right'
                 },
                 zIndex: 4
             }, {
@@ -275,8 +294,7 @@
                 label: {
                     rotation: 0,
                     text: 'Schedule\'s 1st version',
-                    textAlign: 'left',
-                    align: 'left'
+                    align: 'right'
                 },
                 zIndex: 4
             }, {
@@ -287,8 +305,7 @@
                 label: {
                     rotation: 0,
                     text: 'Schedule\'s interactive version',
-                    textAlign: 'left',
-                    align: 'left'
+                    align: 'right'
                 },
                 zIndex: 4
             },{
@@ -299,8 +316,40 @@
                 label: {
                     rotation: 0,
                     text: 'OJA Finalists',
-                    textAlign: 'left',
-                    verticalAlign: 'top'
+                    align: 'right'
+                },
+                zIndex: 4
+            },{
+                color: 'black',
+                dashStyle: 'Dot', 
+                width: 2,
+                value: Date.UTC(2014,8,21),
+                label: {
+                    rotation: 0,
+                    text: 'Sesame Workshop',
+                    align: 'right'
+                },
+                zIndex: 4
+            },{
+                color: 'black',
+                dashStyle: 'Dot', 
+                width: 2,
+                value: Date.UTC(2014,9,4),
+                label: {
+                    rotation: 0,
+                    text: 'Ferguson keynote',
+                    align: 'right'
+                },
+                zIndex: 4
+            },{
+                color: 'black',
+                dashStyle: 'Dot', 
+                width: 2,
+                value: Date.UTC(2014,9,9),
+                label: {
+                    rotation: 0,
+                    text: 'NY Times keynote',
+                    align: 'right'
                 },
                 zIndex: 4
             }]
@@ -315,7 +364,8 @@
                 text: 'Total registrations',
                 style: {
                     color: Highcharts.getOptions().colors[0]
-                }
+                },
+                opposite: true
             },
             labels: {
                 format: '{value}',
@@ -323,7 +373,7 @@
                     color: Highcharts.getOptions().colors[0]
                 }
             },
-            opposite: true
+            min: 0
         }],
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -335,7 +385,7 @@
                 enabled: true
             },
             plotOptions: {
-                column: {
+                bar: {
                     pointPadding: 0,
                     borderWidth: 0,
                     groupPadding: 0
@@ -351,7 +401,7 @@
             series: [{
                     name: 'Registrations',
                     yAxis: 0,
-                    type: "column",
+                    type: "bar",
                     data: [{"x":Date.UTC(2014,4,14),"y":39},
 {"x":Date.UTC(2014,4,15),"y":8},
 {"x":Date.UTC(2014,4,16),"y":10},
@@ -497,6 +547,7 @@
                         enabled: false
                     },
                     width: 5,
+                    color: '#13646B',
                     zIndex: -1,
                     data: [{"x":Date.UTC(2014,4,14),"y":39},
 {"x":Date.UTC(2014,4,15),"y":47},
